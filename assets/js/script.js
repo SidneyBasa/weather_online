@@ -73,7 +73,7 @@ function createForecast(data)
     // console.log('Test for coordinates with data.coord', data.coord);
     // console.log('Test for coordinates data.coord.late', data.coord.lat);
     // console.log('Test for coordinates data.coord.lon', data.coord.lon);
-    var requestUrl = 'http://api.openweathermap.org/data/2.5/forecast?lat='+ data.coord.lat + '&lon=' + data.coord.lon + '&appid=' + OpenWeatherAPIkey + '&units=imperial';
+    var requestUrl = 'https://api.openweathermap.org/data/2.5/forecast?lat='+ data.coord.lat + '&lon=' + data.coord.lon + '&appid=' + OpenWeatherAPIkey + '&units=imperial';
 
     fetch(requestUrl)
     .then(function(response) {
