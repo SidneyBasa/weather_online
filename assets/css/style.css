@@ -11,21 +11,52 @@
     min-height: 100px;
 }
 
+#forecast {
+    position: absolute;
+    left: 230px;
+    top: 250px;
+    font-size: 16px;
+    font-style: bold;
+}
+
+.card1 {
+    position: relative;
+    display: inline-block;
+    /* display: flex; */
+    border: 2px;
+    background-color: blue;
+    width: 14vw;
+    height: 20vh;
+    margin: 5px;
+}
+
+@media screen and (max-width: 890px) {
+    .card1 {
+        position: relative;
+        /* display: flex; */
+        width: 50vw;
+        margin: 5px;
+        right: 20px;
+
+    }
+    
+}
+
 aside {
     padding: 5px;
-    position: absolute;
+   
 }
 
 #fetch_button {
-    position: relative;
-    bottom: 95px;
+    position: absolute;
+    top: 220px;
     padding: 5px;
     margin: 5px;
 }
 
 #city1 {
-    position: relative;
-    bottom: 95px;
+    position: absolute;
+    top: 180px;
     padding: 5px;
     margin: 5px;
 }
@@ -36,17 +67,18 @@ li {
     background-color: blue;
     list-style-type: none;
     width: 20vw;
-    right: 34px;
-    bottom: 50px;
+    right: 30px;
+    top: 90px;
     padding-top: 2px;
     padding-bottom: 2px;
-    margin: 2px;
+    margin: 5px;
+    margin-bottom: 2px;
     border: 1px;
     border-radius: 8px;
     text-align: center;
     color: white;
-    max-width: 200px;
-    min-width: 150px;
+    max-width: 170px;
+    min-width: 130px;
 }
 
 li:hover {
@@ -54,10 +86,10 @@ li:hover {
 }
 
 .info-box {
-    position: relative;
+    position: absolute;
     background-color: aqua;
     left: 230px;
-    bottom: 45px; 
+    top: 120px; 
     width: 70vw;
     border: 2px;
     height: 12vh;
@@ -73,4 +105,9 @@ li:hover {
     padding-left: 7px;
     padding-bottom: 4px;;
     /* margin-left: 2px; */
+}
+
+#card0, #card1, #card2, #card3, #card4 {
+    font-size: 18px;
+    color: white;
 }
