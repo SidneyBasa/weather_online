@@ -10,6 +10,9 @@ var cityName = document.querySelector('#city-name');
 
 let tempStore = false;
 
+// Create a maximum of 5 forecast cards
+let cards_remaining = 4;
+
 card_count = 0;
 // console.log("Test of foreCast at line 11", foreCast)
 // OpenWeather generated API key
@@ -180,7 +183,19 @@ var new_date = b.format('M/D/YYYY')
 
 // Select the root div with the ID forecast
 var foreCast = $('#forecast');
+
+// If card1 does not exist, create it one time
+if (!card1)
+{
 var card1 = $('<div>')
+}
+else if (cards_remaining > 0)
+{
+    var card1 = $('<div>')
+    console.log("Cards remaining: ", cards_remaining)
+    cards_remaining--;
+}
+
 card1.text(new_date);
 card1.attr('class', 'card1');
 // Adding an id attribute to the div that was just created with the class of card
@@ -193,6 +208,15 @@ var avg_temp = forecasting.list[i * 7].main.temp
 // console.log(avg_temp)
 // Selecting the current ID of the <div> with the class of card that was just created
 var select_card = $('#card' + i);
+
+
+// The address to the forecast container
+console.log("value of document.children[0].children[1].children[1].children[2]", document.children[0].children[1].children[1].children[2])
+
+// The address to the first card
+console.log("value of document.children[0].children[1].children[1].children[2].children[1]", document.children[0].children[1].children[1].children[2].children[1])
+
+
 // creating a new div within this .card class
 var temp_card = $('<div>');
 // Placing the temperature as text within this new div
