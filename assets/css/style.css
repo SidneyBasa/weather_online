@@ -54,6 +54,17 @@ aside {
     margin: 5px;
 }
 
+#remove_button {
+    position: absolute;
+    top: 220px;
+    padding: 5px;
+    margin: 5px;
+    left: 140px;
+    width: 70px;
+    height: 30px;
+
+}
+
 #city1 {
     position: absolute;
     top: 180px;

@@ -8,11 +8,6 @@ var currentWindSpeed = document.querySelector('#city-wind-speed');
 var currentWindDirection = document.querySelector('#city-wind-direction');
 var cityName = document.querySelector('#city-name');
 
-
-// Friday January 20, 2023 @ 6:25pm
-var city_List = document.querySelector('#city-list');
-var remove = document.querySelector('#remove_button');
-
 let tempStore = false;
 
 var cityArray = [];
@@ -70,11 +65,6 @@ function getApi() {
 
         // Pushing data that was taken from the fetch request
         createForecast(data);
-
-        // Friday January 20, 2023 @ 7:09pm
-        // Instantiating 3 new functions:
-        saveCitiesToLocalStorage()
-        getCitiesFromLocalStorage()
     });
 }
 
@@ -138,88 +128,22 @@ var cityList = $('#city-list');
 // Adding date from day.js next to city name
 var cityDate = $('#city-date');
 
+// var cityListed = document.createElement("<ul>");
+var cityListed = $('<li>');
+
+// cityListed.textContent = data.name;
+cityListed.text(data.name);
 
 // Creating the date next to the city name
 cityDate.text(current_date);
 
+// cityList.append(cityListed);
+cityList.append(cityListed);
 
 // Pushing data that was created in the functions above
 create5day(data, forecasting, today);
 
 }
-
-
-// Friday January 20, 2023 @ 6:35pm
-// Creating an arrayed list from local storage
-function getCitiesFromLocalStorage() {
-
-// Adding an attribute to the <li> being created
-for (var i = 0; i < cityArray.length; i++) {
-var citadel = cityArray[i];
-
-// jQueryEquivalent of var city_List = document.querySelector('#city-list')
-// Select the root ul with the ID city-list
-var city_List = $('#city-list');
-
-// jQuery equivalent to var CityListed = document.createElement("li");
-var cityListed = $('<li>');
-// jQuery equivalent to cityListed.textContent = data.name;
-cityListed.text(citadel);
-
-// jQuery equivalent to cityListed.setAttribute("data-index", i)
-cityListed.attr('data-index', i);
-
-// cityList.append(cityListed);
-city_List.append(cityListed);
-
-}
-
-}
-
-// Friday January 20, 2023 @ 6:14pm
-// The init function will run when the page loads
-// This will initiate the generation of a list of cities that has been stored in local storage
-function init() {
-    
-    // Gets thes stored cities from local storage
-    var storedCities = JSON.parse(localStorage.getItem("cityArray"));
-
-    // If the city array was retrieved from the local storage, update the cityArray
-    if (storedCities !== null) {
-        cityArray = storedCities;
-    }
-    
-    // Friday January 20, 2023 @ 6:51pm
-    getCitiesFromLocalStorage();
-}
-
-// Friday January 20, 2023 @ 6:59pm
-// Storing cities to the cityArray in local storage
-function saveCitiesToLocalStorage() {
-    localStorage.setItem("cityArray", JSON.stringify(cityArray));
-
-    var cityText = city1.value.trim();
-
-    // Return the function if the city input is blank
-    if (cityText === "") {
-        return;
-    }
-
-    // Array method push, adds the city to the end of the cityArray
-    cityArray.push(cityText)
-    // This method clears the city input text
-    // city1.value = "";
-}
-
-function removeCityFromLocalStorage() {
-    localStorage.removeItem("cityArray");
-
-    // Array method push, removes the city to the end of the cityArray
-    cityArray.pop()
-    console.log("Value of cityArray from remove function", cityArray)
-    // getCitiesFromLocalStorage();
-}
-
 
 // This function creates the 5 day forecast structure
 function create5day(data, forecasting, today) {
@@ -360,29 +284,3 @@ for (var i = 0; i < 5; i++){
 fetch_button.addEventListener('click', consoleTest);
 
 fetch_button.addEventListener('click', getApi);
-
-// Friday January 20, 2023 @ 6:26pm
-city_List.addEventListener('click', function(event) {
-    
-    // Not sure what this does, but it's from module 4 APIs, activity 26
-    var elements = event.target;
-
-    // Check if element is a list
-    if (elements.matches("li") === true) {
-        // Get the data-index value
-        var index = elements.parentElement.getAttribute("data-index");
-
-        // Friday January 20, 2023 @ 7:05pm
-        // pause the following for testing
-        // getApi()
-    }
-})
-
-remove.addEventListener('click', function(event) {
-    event.preventDefault();
-    removeCityFromLocalStorage()
-})
-
-// This will call the init function to retrieve the cityArray and render the cities to the page
-// Friday January 20, 2023 @ 6:19pm
-init ()
