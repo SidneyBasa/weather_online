@@ -14,7 +14,7 @@ var city_List = document.querySelector('#city-list');
 var remove = document.querySelector('#remove_button');
 
 let tempStore = false;
-
+var city_count = 0;
 var cityArray = [];
 
 // Create a maximum of 5 forecast cards
@@ -70,7 +70,7 @@ function getApi() {
 
         // Pushing data that was taken from the fetch request
         createForecast(data);
-
+        city_count = city_count + 1;
         // Friday January 20, 2023 @ 7:09pm
         // Instantiating 3 new functions:
         saveCitiesToLocalStorage()
@@ -154,25 +154,40 @@ create5day(data, forecasting, today);
 function getCitiesFromLocalStorage() {
 
 // Adding an attribute to the <li> being created
-for (var i = 0; i < cityArray.length; i++) {
-var citadel = cityArray[i];
+// for (var i = 0; i < cityArray.length; i++) {
+// var citadel = cityArray[i];
 
 // jQueryEquivalent of var city_List = document.querySelector('#city-list')
 // Select the root ul with the ID city-list
 var city_List = $('#city-list');
 
-// jQuery equivalent to var CityListed = document.createElement("li");
-var cityListed = $('<li>');
-// jQuery equivalent to cityListed.textContent = data.name;
-cityListed.text(citadel);
+// Friday January 20, 2023 @ 8:55pm, new includes method
+// if (citadel.includes(city1.value))
+// {
+//     return;
+// }
+console.log("Value of city_count", city_count)
+// else{
+    if (city_count > 0)
+    {
+    var city_number = city_count;
+    // jQuery equivalent to var CityListed = document.createElement("li");
+    var cityListed = $('<li>');
 
-// jQuery equivalent to cityListed.setAttribute("data-index", i)
-cityListed.attr('data-index', i);
+    // jQuery equivalent to cityListed.textContent = data.name;
+    cityListed.text(city1.value);
 
-// cityList.append(cityListed);
-city_List.append(cityListed);
+    // jQuery equivalent to cityListed.setAttribute("data-index", i)
+    cityListed.attr('data-index', city_number);
+    
 
-}
+    // cityList.append(cityListed);
+    city_List.append(cityListed);
+    }
+// }
+
+
+// }
 
 }
 
@@ -205,8 +220,19 @@ function saveCitiesToLocalStorage() {
         return;
     }
 
-    // Array method push, adds the city to the end of the cityArray
-    cityArray.push(cityText)
+    // Friday January 20, 2023 @ 8:48pm 
+    // Check if the city is already in the array, if so, return
+    // This is to prevent 2 Seattles from being stored
+     if ( cityArray.includes(cityText))
+     {
+        return;
+     }   
+     else {
+         // Array method push, adds the city to the end of the cityArray
+        cityArray.push(cityText)
+        
+     }
+    
     // This method clears the city input text
     // city1.value = "";
 }
@@ -366,7 +392,7 @@ city_List.addEventListener('click', function(event) {
     
     // Not sure what this does, but it's from module 4 APIs, activity 26
     var elements = event.target;
-
+    
     // Check if element is a list
     if (elements.matches("li") === true) {
         // Get the data-index value
