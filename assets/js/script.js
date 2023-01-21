@@ -12,11 +12,14 @@ var cityName = document.querySelector('#city-name');
 // Friday January 20, 2023 @ 6:25pm
 var city_List = document.querySelector('#city-list');
 var remove = document.querySelector('#remove_button');
+var city_being_fetched = '';
 
 let tempStore = false;
 var city_count = 0;
 var cityArray = [];
 
+var getCityData = '';
+console.log("Value of getCityData", getCityData)
 // Create a maximum of 5 forecast cards
 let cards_remaining = 4;
 
@@ -27,23 +30,37 @@ var OpenWeatherAPIkey = "d8e37c6ab0ccb49462ecfa3903bde601";
 
 var OpenWeatherDefaultKey = "280939f72184ff7f41f0df5fd40b05a6";
 
-console.log("test")
+// console.log("test")
 
 // Testing for input 
 // Re-discovered event.preventDefault()
-function consoleTest(event) {
-    event.preventDefault();
+// function consoleTest(event) {
+//     event.preventDefault();
 // console.log("Test city1.value", city1.value)
 // console.log("Test city1.value[1]", city1.value[1])
 // console.log("Test city1.value.wind", city1.value.wind)
 // console.log("Test city1.value.main.humidity", city1.value.main.humidity)
 // console.log("Test city1.value.main.temp", city1.value.main.temp)
-}
+// }
+
 
 function getApi() {
+    
+    if (getCityData != '')
+    {
+        console.log("Test if GetcityData responds if (getCityData != '')")
+        city_being_fetched = getCityData
+        console.log("Value of city_being_fetched at if statement", city_being_fetched)
+        console.log("Value of getCityData at if statement", getCityData)
+    }
+    else
+    {
+        city_being_fetched = city1.value;
+        console.log("Value of city_being_fetched at else statement", city_being_fetched)
+    }
 
     // OpenWeather URL trial and error
-    var requestUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + city1.value + '&appid=' + OpenWeatherAPIkey + '&units=imperial'; 
+    var requestUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + city_being_fetched + '&appid=' + OpenWeatherAPIkey + '&units=imperial'; 
                     // https://api.openweathermap.org/data/2.5/weather?lat=57&lon=-2.15&appid={API key}&units=imperial
                     // 'http://api.openweathermap.org/data/2.5/weather&appid={OpenWeatherAPIkey}';
                     // http://api.openweathermap.org/data/2.5/weather
@@ -70,11 +87,11 @@ function getApi() {
 
         // Pushing data that was taken from the fetch request
         createForecast(data);
-        city_count = city_count + 1;
+        // city_count = city_count + 1;
         // Friday January 20, 2023 @ 7:09pm
         // Instantiating 3 new functions:
-        saveCitiesToLocalStorage()
-        getCitiesFromLocalStorage()
+        // saveCitiesToLocalStorage()
+        // getCitiesFromLocalStorage()
     });
 }
 
@@ -118,7 +135,6 @@ function createForecast(data)
 // Comments are added for the vanilla JavaScript equivalents
 
 // This function createCity creates the structure of the info box and populates it
-// This function adds a list of cities for each input box submission
 function createCity(data, forecasting) {
 
 // day.js API Jan 18 2023 @ 6:39pm
@@ -150,52 +166,89 @@ create5day(data, forecasting, today);
 
 
 // Friday January 20, 2023 @ 6:35pm
-// Creating an arrayed list from local storage
+// Loads the aside list from the array in local storage 
 function getCitiesFromLocalStorage() {
 
+console.log("Test at get cities from local storage")
 // Adding an attribute to the <li> being created
-// for (var i = 0; i < cityArray.length; i++) {
-// var citadel = cityArray[i];
+for (var i = 0; i < cityArray.length; i++) {
+var citadel = cityArray[i];
 
 // jQueryEquivalent of var city_List = document.querySelector('#city-list')
 // Select the root ul with the ID city-list
 var city_List = $('#city-list');
-
+console.log("test at for loop")
 // Friday January 20, 2023 @ 8:55pm, new includes method
 // if (citadel.includes(city1.value))
 // {
 //     return;
 // }
-console.log("Value of city_count", city_count)
 // else{
-    if (city_count > 0)
+    console.log("value of cityArray.length", cityArray.length)
+    if (cityArray.length == 0)
     {
-    var city_number = city_count;
+        return;
+    } else {
+    // var city_number = city_count;
     // jQuery equivalent to var CityListed = document.createElement("li");
     var cityListed = $('<li>');
 
     // jQuery equivalent to cityListed.textContent = data.name;
-    cityListed.text(city1.value);
+    cityListed.text(citadel);
 
     // jQuery equivalent to cityListed.setAttribute("data-index", i)
-    cityListed.attr('data-index', city_number);
+    cityListed.attr('data-index', i);
     
 
     // cityList.append(cityListed);
     city_List.append(cityListed);
+    // }
     }
-// }
-
-
-// }
 
 }
+}
+
+function addCityToAsideList () {
+    var city_List = $('#city-list');
+
+    // Friday January 20, 2023 @ 8:55pm, new includes method
+    // if (citadel.includes(city1.value))
+    // {
+    //     return;
+    // }
+    console.log("Value of city_count", city_count)
+    // else{
+        // if (city_count > 0)
+        // {
+        
+        var city_number = city_count;
+        // jQuery equivalent to var CityListed = document.createElement("li");
+        var cityListed = $('<li>');
+    
+        // jQuery equivalent to cityListed.textContent = data.name;
+        cityListed.text(city1.value);
+    
+        // jQuery equivalent to cityListed.setAttribute("data-index", i)
+        cityListed.attr('data-index', city_number);
+        
+    
+        // cityList.append(cityListed);
+        city_List.append(cityListed);
+        // }
+        saveCitiesToLocalStorage()
+        city_count++
+    
+}
+
+
+
 
 // Friday January 20, 2023 @ 6:14pm
 // The init function will run when the page loads
 // This will initiate the generation of a list of cities that has been stored in local storage
 function init() {
     
+    // getCitiesFromLocalStorage()
     // Gets thes stored cities from local storage
     var storedCities = JSON.parse(localStorage.getItem("cityArray"));
 
@@ -205,7 +258,9 @@ function init() {
     }
     
     // Friday January 20, 2023 @ 6:51pm
-    getCitiesFromLocalStorage();
+    getCitiesFromLocalStorage()
+    console.log("Test at init function")
+    console.log("value of storedCities", storedCities)
 }
 
 // Friday January 20, 2023 @ 6:59pm
@@ -383,24 +438,35 @@ for (var i = 0; i < 5; i++){
 
 // fetch_button.addEventListener('click', createCity);
 
-fetch_button.addEventListener('click', consoleTest);
+// fetch_button.addEventListener('click', consoleTest);
 
-fetch_button.addEventListener('click', getApi);
+fetch_button.addEventListener('click', function(event) {
+    event.preventDefault();
+    getApi();
+    addCityToAsideList();
+});
+
 
 // Friday January 20, 2023 @ 6:26pm
 city_List.addEventListener('click', function(event) {
-    
+    event.preventDefault();
     // Not sure what this does, but it's from module 4 APIs, activity 26
     var elements = event.target;
+    console.log("Value of elements", elements)
     
     // Check if element is a list
     if (elements.matches("li") === true) {
         // Get the data-index value
-        var index = elements.parentElement.getAttribute("data-index");
+        var index = elements.getAttribute("data-index");
 
+        console.log("Value of index", index)
         // Friday January 20, 2023 @ 7:05pm
         // pause the following for testing
-        // getApi()
+
+        getCityData = cityArray[index];
+        console.log("Value of getCityData", getCityData)
+
+        getApi()
     }
 })
 
