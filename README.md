@@ -12,6 +12,8 @@ Update Wed January 18, 2023: Added jQuery API and Day.js for additional function
 Update Friday January 20, 2023: Added local storage API to save city data. The cities can be removed from memory with remove button.
 Still working on this, as multiple cities are rendered which reflect all the elements of the cities array []
 
+Update Friday January 20, 2023 @ 9:19pm: The city list is being added one city at a time, instead of the entire array.
+
 ![A screen shot of the partially functioning weather data website](/screenshot.jpg)
 
 ## URL of Deployed webpage
