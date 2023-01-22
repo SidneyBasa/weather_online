@@ -171,6 +171,11 @@ function getCitiesFromLocalStorage() {
 
 console.log("Test at get cities from local storage")
 // Adding an attribute to the <li> being created
+
+// Retrieve city array from local storage
+cityArray = JSON.parse(localStorage.getItem("cityArray"));
+console.log("Value of cityArray after getItem line 177", cityArray)
+
 for (var i = 0; i < cityArray.length; i++) {
 var citadel = cityArray[i];
 
@@ -208,37 +213,53 @@ console.log("test at for loop")
 }
 }
 
-function addCityToAsideList () {
-    var city_List = $('#city-list');
+// Adds a city to the cityArray 
+// function addCityToAsideList () {
+//     var city_List = $('#city-list');
 
     // Friday January 20, 2023 @ 8:55pm, new includes method
     // if (citadel.includes(city1.value))
     // {
     //     return;
     // }
-    console.log("Value of city_count", city_count)
+
+    // console.log("Value of city_count", city_count)
     // else{
         // if (city_count > 0)
         // {
         
-        var city_number = city_count;
+        // 
+        // var city_number = city_count;
         // jQuery equivalent to var CityListed = document.createElement("li");
-        var cityListed = $('<li>');
+        // var cityListed = $('<li>');
     
         // jQuery equivalent to cityListed.textContent = data.name;
-        cityListed.text(city1.value);
+        // cityListed.text(city1.value);
     
         // jQuery equivalent to cityListed.setAttribute("data-index", i)
-        cityListed.attr('data-index', city_number);
+        // cityListed.attr('data-index', city_number);
         
-    
+        // Saturday January 21 2023 @ 7:50pm
+        // Get local storage array
+        // Modify local storage arrray
+        // Set local storage array
+        // var cityArray3 = JSON.parse(localStorage.getItem(cityArray));
+
         // cityList.append(cityListed);
-        city_List.append(cityListed);
+        // city_List.append(cityListed);
+
+        // cityArray = push(cityArray3);
+
+        // localStorage.setItem("cityArray", JSON.stringify(cityArray));
+        
+
+        // console.log("Valuue of cityArray after append(cityArray3)")
+
         // }
-        saveCitiesToLocalStorage()
+        // saveCitiesToLocalStorage()
         city_count++
     
-}
+// }
 
 
 
@@ -269,6 +290,7 @@ function saveCitiesToLocalStorage() {
     localStorage.setItem("cityArray", JSON.stringify(cityArray));
 
     var cityText = city1.value.trim();
+    console.log("Value at save cities to local storage, cityText", cityText)
 
     // Return the function if the city input is blank
     if (cityText === "") {
@@ -285,20 +307,42 @@ function saveCitiesToLocalStorage() {
      else {
          // Array method push, adds the city to the end of the cityArray
         cityArray.push(cityText)
-        
+     
+        localStorage.setItem("cityArray", JSON.stringify(cityArray));
      }
+
+
     
     // This method clears the city input text
     // city1.value = "";
 }
 
+// This function removes the last city from the cityArray in local storage
 function removeCityFromLocalStorage() {
-    localStorage.removeItem("cityArray");
+    
+    // Saturday January 21, 2023 @ 7:20pm 
+    // Discovered the usage of JSON.stringify() and JSON.parse()
+    // For local storage of arrays and objects
+    // Reference located in Zoom recording, UW code bootcamp lecture Tuesday Jan 3, 2023
+
+    // This method removes the entire cityArray
+    // localStorage.removeItem("cityArray");
+
+    // January 21, 2023 7:24pm, revising remove method to get array, modify then set array
+    // In order to remove one city at a time
+    var cityArray2 = JSON.parse(localStorage.getItem("cityArray"));
+    console.log("Value of cityArray2 before pop from remove function", cityArray2)
 
     // Array method push, removes the city to the end of the cityArray
-    cityArray.pop()
-    console.log("Value of cityArray from remove function", cityArray)
+    cityArray2.pop()
+
+    console.log("Value of cityArray2 after pop from remove function", cityArray2)
     // getCitiesFromLocalStorage();
+
+    // Return modified array to local storage
+    localStorage.setItem("cityArray", JSON.stringify(cityArray2))
+
+    getCitiesFromLocalStorage()
 }
 
 
@@ -442,8 +486,9 @@ for (var i = 0; i < 5; i++){
 
 fetch_button.addEventListener('click', function(event) {
     event.preventDefault();
+    saveCitiesToLocalStorage()
     getApi();
-    addCityToAsideList();
+    // addCityToAsideList();
 });
 
 
@@ -466,6 +511,7 @@ city_List.addEventListener('click', function(event) {
         getCityData = cityArray[index];
         console.log("Value of getCityData", getCityData)
 
+        saveCitiesToLocalStorage()
         getApi()
     }
 })
