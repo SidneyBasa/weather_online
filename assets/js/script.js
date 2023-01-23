@@ -121,6 +121,7 @@ function createForecast(data)
         // console.log("Test of forecasting.list.dt", forecasting.list.dt)
         // console.log("Test of forecasting.list.dt_txt", forecasting.list.dt_txt)
         // console.log("Test of forecasting.list[0].dt_txt", forecasting.list[0].dt_txt)
+        // console.log("Test for forecasting.list.weather.icon", forecasting.list.weather.icon)
     
         // Pushing data that was received from the 2 fetch requests above
         createCity(data, forecasting);
@@ -339,7 +340,12 @@ function saveCitiesToLocalStorage() {
     // Friday January 20, 2023 @ 8:48pm 
     // Check if the city is already in the array, if so, return
     // This is to prevent 2 Seattles from being stored
-     if ( cityArray.includes(cityText))
+    
+    if (cityArray.includes(cityText) == null)
+     {
+        return;
+     }
+    else if (cityArray.includes(cityText))
      {
         return;
      }   
@@ -410,7 +416,7 @@ function create5day(data, forecasting, today) {
 
     // Sunday January 23 2023 @ 5:27pm
     // Prefixed city name to 5 day forecast heading
-    foreCastHeading.text(data.name + ' 5-Day Forecast:');
+    // foreCastHeading.text(data.name + ' 5-Day Forecast:');
     foreCastHeading.text(' 5-Day Forecast:');
 
     // console.log("Test of foreCast", foreCast)
@@ -426,6 +432,10 @@ function create5day(data, forecasting, today) {
     // console.log("Test of forecasting at line 175", forecasting)
     // console.log("Test of forecasting.list[0] at line 175", forecasting.list[0])
     // console.log("Test of forecasting.list[0].main.temp at line 175", forecasting.list[0].main.temp)
+    // console.log("Test for forecasting.list[i].weather", forecasting.list[i].weather)
+    console.log("Test for forecasting.list[i].weather.icon", forecasting.list[i].weather)
+    console.log("Test for forecasting.forecast", forecasting.forecast)
+    console.log("test for data.forecast", data.forecast)
 
     // Select the root div with the ID forecast
     var foreCast = $('#forecast');
