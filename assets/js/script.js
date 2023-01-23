@@ -408,7 +408,7 @@ function create5day(data, forecasting, today) {
 
     var foreCastHeading = $('<h2>');
 
-    foreCastHeading.text('5-Day Forecast:');
+    foreCastHeading.text(data.name + ' 5-Day Forecast:');
 
     // console.log("Test of foreCast", foreCast)
     // console.log("Test of foreCast[0]", foreCast[0]);
