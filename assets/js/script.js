@@ -364,10 +364,14 @@ function saveCitiesToLocalStorage() {
     //  }   
     //  else {
          // Array method push, adds the city to the end of the cityArray
+        // console.log("Test at line 367 cityArray", cityArray)
+
+        if (cityArray != null)
+        {
         cityArray.push(cityText)
      
         localStorage.setItem("cityArray", JSON.stringify(cityArray));
-    //  }
+        }
 
      getCitiesFromLocalStorage()
     
