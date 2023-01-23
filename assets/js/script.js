@@ -355,19 +355,19 @@ function saveCitiesToLocalStorage() {
     //     return;
     //  }
     // else if (!cityArray.includes(cityText))
-    console.log("Test of cityArray.includes(cityText)", cityArray.includes(cityText))
-    if (cityArray.includes(cityText) == false)
-     {
-        cityArray.push(cityText)
+    // console.log("Test of cityArray.includes(cityText)", cityArray.includes(cityText))
+    // if (cityArray.includes(cityText) == false)
+    //  {
+    //     cityArray.push(cityText)
      
-        localStorage.setItem("cityArray", JSON.stringify(cityArray));
-     }   
-     else {
+    //     localStorage.setItem("cityArray", JSON.stringify(cityArray));
+    //  }   
+    //  else {
          // Array method push, adds the city to the end of the cityArray
         cityArray.push(cityText)
      
         localStorage.setItem("cityArray", JSON.stringify(cityArray));
-     }
+    //  }
 
      getCitiesFromLocalStorage()
     
