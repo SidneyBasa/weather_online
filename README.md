@@ -17,7 +17,7 @@ Update Sunday January 22, 2023 @ 5:12pm: Web application is fully functional. Ci
 
 ## Usage
 Note* This website functions on desktop / laptop web browsers. <br>
-When testing in iPhone Safari or Chrome browsers it does not function. <br>
+When testing with the iPhone Safari or the iPhone Chrome browsers this website does not function. <br>
 Sunday January 22, 2023 @ 9:08pm <br>
 Discovered that all variables must be checked for null before it can function with an iPhone
 
