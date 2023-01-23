@@ -1,5 +1,6 @@
 # weather_online challenge 6
-A weather application that uses the OpenWeather API
+A weather application that uses the OpenWeatherMap API<br>
+https://openweathermap.org/api
 
 ## Description
 The website is able to load and display the date using the day.js API. <br> The save buttons on each time slot are detected in the application. <br> However I allocated insufficient time to complete the saving of the data to the web application. <br>
