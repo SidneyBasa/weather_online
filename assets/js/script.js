@@ -341,6 +341,8 @@ function saveCitiesToLocalStorage() {
     // Check if the city is already in the array, if so, return
     // This is to prevent 2 Seattles from being stored
     
+    // January 22 2023 @ 7:08pm
+    // Debugging for iPhone error discovered using iPhone app F12 debug console
     if (cityArray.includes(cityText) == null)
      {
         return;
