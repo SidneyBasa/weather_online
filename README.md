@@ -1,5 +1,5 @@
 # weather_online challenge 6
-A weather application that uses the OpenWeatherMap API
+A weather application that uses the OpenWeatherMap API<br>
 https://openweathermap.org/api
 
 ## Description
