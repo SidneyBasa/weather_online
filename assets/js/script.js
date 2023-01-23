@@ -343,13 +343,24 @@ function saveCitiesToLocalStorage() {
     
     // January 22 2023 @ 7:08pm
     // Debugging for iPhone error discovered using iPhone app F12 debug console
-    if (cityArray.includes(cityText) == null)
+    // console.log("Value of city array", cityArray)
+    // if (cityArray.length == 0)
+    // {
+    //     console.log("city array length is 0", cityArray.length)
+    // }
+    // if (cityArray.includes(cityText) == null)
+    // console.log("Test of cityArray.includes(cityText)", cityArray.includes(cityText))
+    // if (cityArray.length == 0)
+    //  {
+    //     return;
+    //  }
+    // else if (!cityArray.includes(cityText))
+    console.log("Test of cityArray.includes(cityText)", cityArray.includes(cityText))
+    if (cityArray.includes(cityText) == false)
      {
-        return;
-     }
-    else if (cityArray.includes(cityText))
-     {
-        return;
+        cityArray.push(cityText)
+     
+        localStorage.setItem("cityArray", JSON.stringify(cityArray));
      }   
      else {
          // Array method push, adds the city to the end of the cityArray
