@@ -408,6 +408,8 @@ function create5day(data, forecasting, today) {
 
     var foreCastHeading = $('<h2>');
 
+    // Sunday January 23 2023 @ 5:27pm
+    // Prefixed city name to 5 day forecast heading
     foreCastHeading.text(data.name + ' 5-Day Forecast:');
 
     // console.log("Test of foreCast", foreCast)
