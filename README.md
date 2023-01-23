@@ -13,7 +13,13 @@ Still working on this, as multiple cities are rendered which reflect all the ele
 
 Update Friday January 20, 2023 @ 9:19pm: The city list is being added one city at a time, instead of the entire array.
 
-Update Sunday January 22, 2023 @ 5:12pm: Web application is fully functional. City buttons can now being added and removed dynamically. 
+Update Sunday January 22, 2023 @ 5:12pm: Web application is fully functional. City buttons can now being added and removed dynamically.
+
+## Usage
+Note* This website functions on desktop / laptop web browsers. <br>
+When testing in iPhone Safari or Chrome browsers it does not function. <br>
+Sunday January 22, 2023 @ 9:08pm <br>
+Discovered that all variables must be checked for null before it can function with an iPhone
 
 ![A screen shot of the partially functioning weather data website](/screenshot.jpg)
 
