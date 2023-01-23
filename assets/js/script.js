@@ -71,13 +71,13 @@ function getApi() {
         return response.json();
     })
     .then(function (data) {
-        console.log(data)
-        console.log("data.name", data.name)
-        console.log("data.wind", data.wind)
-        console.log("data.wind.deg", data.wind.deg)
-        console.log("data.wind.deg", data.wind.speed)
-        console.log("data.main.temp", data.main.temp)
-        console.log('data.main.humidity', data.main.humidity)
+        // console.log(data)
+        // console.log("data.name", data.name)
+        // console.log("data.wind", data.wind)
+        // console.log("data.wind.deg", data.wind.deg)
+        // console.log("data.wind.deg", data.wind.speed)
+        // console.log("data.main.temp", data.main.temp)
+        // console.log('data.main.humidity', data.main.humidity)
 
         cityName.textContent = data.name;
         currentTemp.textContent = data.main.temp;
@@ -110,7 +110,7 @@ function createForecast(data)
     })
     .then(function(forecasting){
         // Test for second data set: forecast
-        console.log("Test for forecast data set:", forecasting)
+        // console.log("Test for forecast data set:", forecasting)
 
         // var today = dayjs();
         // var current_date = today.format('M/D/YYYY');
@@ -141,8 +141,8 @@ function createCity(data, forecasting) {
 var today = dayjs();
 var current_date = today.format(' M/D/YYYY');
 var current_time = today.format('h:mm:ss a');
-console.log("Test of day.js API function call, today's date:", current_date);
-console.log("Test of day.js API function call, current time:", current_time);
+// console.log("Test of day.js API function call, today's date:", current_date);
+// console.log("Test of day.js API function call, current time:", current_time);
 
 // Logic for the aside list
 // console.log("data.name", data.name)
@@ -172,10 +172,15 @@ function getCitiesFromLocalStorage() {
 console.log("Test at get cities from local storage")
 // Adding an attribute to the <li> being created
 
+// Sunday January 22, 2023 @ 3:12pm
+// Clearing the city buttons html list elements
+clearCityButtons()
+
 // Retrieve city array from local storage
 cityArray = JSON.parse(localStorage.getItem("cityArray"));
 console.log("Value of cityArray after getItem line 177", cityArray)
 
+// Iterates through the cityArray that was refreshed when synchronizing with the local storage Cityarray
 for (var i = 0; i < cityArray.length; i++) {
 var citadel = cityArray[i];
 
@@ -183,6 +188,7 @@ var citadel = cityArray[i];
 // Select the root ul with the ID city-list
 var city_List = $('#city-list');
 console.log("test at for loop")
+console.log("Test at citadel", citadel)
 // Friday January 20, 2023 @ 8:55pm, new includes method
 // if (citadel.includes(city1.value))
 // {
@@ -195,6 +201,7 @@ console.log("test at for loop")
         return;
     } else {
     // var city_number = city_count;
+    console.log("Test at line 204 in get cities from local storage")
     // jQuery equivalent to var CityListed = document.createElement("li");
     var cityListed = $('<li>');
 
@@ -203,6 +210,7 @@ console.log("test at for loop")
 
     // jQuery equivalent to cityListed.setAttribute("data-index", i)
     cityListed.attr('data-index', i);
+    cityListed.attr('class', 'city_buttons')
     
 
     // cityList.append(cityListed);
@@ -211,6 +219,35 @@ console.log("test at for loop")
     }
 
 }
+}
+
+
+// Sunday January 22, 2023 @ 3:12pm
+// Clearing all the city buttons html list elements
+function clearCityButtons() {
+    // var cleanButton = $('#city-list');
+    // console.log("Test of value at cleanButton", cleanButton)
+    // console.log("Test of value cleanButton.children[1]", cleanButton.children[1])
+    // console.log("Test of cleanButton.length", cleanButton.length)
+    // console.log("Test of value at cleanButton.value", cleanButton.value)
+    // var cityButtonRemove = $('data-index')
+    // var cleanButtonRemove = document.getElementById("#data-index")
+    // var cleanButtonRemove1 = document.getElementById("data-index.children[0]")
+    // console.log("Test of data-index", cityButtonRemove)
+    // console.log("Test of data-index.children[0]", cleanButtonRemove1)
+    
+    // Select all classes with the <li> list tag
+    // const CityRemovalList = document.querySelectorAll("li")
+    // const CityRemovalList = $('city-buttons')
+    // var card1 = $('<li>')
+    // const CityRemovalList = document.findElementByAttribute("data-index", "2")
+    // console.log("Value of document.quertSelectorAll('li')", CityRemovalList)
+    
+    // remove method for all list items
+    // cleanButton.remove(CityRemovalList);
+
+    // January 22, 2023 @ 5:06pm Discovered jQuery method to remove() city buttons
+    $('.city_buttons').remove();
 }
 
 // Adds a city to the cityArray 
@@ -282,6 +319,8 @@ function init() {
     getCitiesFromLocalStorage()
     console.log("Test at init function")
     console.log("value of storedCities", storedCities)
+    console.log("=======================================")
+    console.log("")
 }
 
 // Friday January 20, 2023 @ 6:59pm
@@ -311,7 +350,7 @@ function saveCitiesToLocalStorage() {
         localStorage.setItem("cityArray", JSON.stringify(cityArray));
      }
 
-
+     getCitiesFromLocalStorage()
     
     // This method clears the city input text
     // city1.value = "";
@@ -518,6 +557,7 @@ city_List.addEventListener('click', function(event) {
 
 remove.addEventListener('click', function(event) {
     event.preventDefault();
+    clearCityButtons()
     removeCityFromLocalStorage()
 })
 
